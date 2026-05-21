@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   actualizarStats();
   setupSearch();
   setupModal();
+  setupMenu();
 });
 
 /* ── Renderizar filtros ── */
@@ -136,7 +137,11 @@ function renderizarLibros() {
 /* ── Stats navbar ── */
 function actualizarStats() {
   const totalEl = document.getElementById("totalLibros");
-  if (totalEl) totalEl.textContent = libros.length;
+  
+  // Solución: Primero verificamos que la variable 'libros' exista en esta página
+  if (totalEl && typeof libros !== 'undefined') {
+    totalEl.textContent = libros.length;
+  }
 }
 
 /* ════════════════════════════════
@@ -208,4 +213,25 @@ function cerrarModal() {
   const overlay = document.getElementById("modalOverlay");
   if (overlay) overlay.classList.remove("activo");
   document.body.style.overflow = "";
+}
+
+/* ── Menú Móvil ── */
+function setupMenu() {
+  const menuToggle = document.getElementById('menuToggle');
+  const navbarLinks = document.getElementById('navbarLinks');
+
+  if (menuToggle && navbarLinks) {
+    // Abrir/Cerrar menú
+    menuToggle.addEventListener('click', () => {
+      navbarLinks.classList.toggle('mostrar');
+    });
+
+    // Cerrar menú al hacer clic en cualquier enlace
+    const links = navbarLinks.querySelectorAll('.nav-item');
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navbarLinks.classList.remove('mostrar');
+      });
+    });
+  }
 }

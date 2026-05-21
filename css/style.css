@@ -814,6 +814,43 @@ body {
 @media (max-width: 768px) {
   .navbar { padding: 0 1.2rem; }
   .navbar-stats { display: none; }
+  
+  /* Mostrar botón hamburguesa */
+  .menu-toggle { display: block; }
+
+  /* Transformar los enlaces en un menú desplegable */
+  .navbar-links {
+    position: absolute;
+    top: 70px; /* Altura del navbar */
+    left: 0;
+    width: 100%;
+    background: rgba(13, 8, 32, 0.95); /* Fondo oscuro con transparencia */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--borde);
+    flex-direction: column;
+    gap: 0;
+    /* Ocultar por defecto (animación) */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  /* Clase para mostrar el menú cuando se hace clic */
+  .navbar-links.mostrar {
+    max-height: 350px; /* Suficiente para que entren los enlaces */
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .nav-item::after { display: none; /* Quitamos la línea inferior en móviles */ }
+
+  /* Resto de tu código responsive... */
   .hero { padding: 3.5rem 1.2rem 3rem; }
   .hero-geo-1, .hero-geo-2, .hero-geo-3, .hero-geo-4 { display: none; }
   .libros-section { padding: 0 1.2rem 3rem; }
@@ -826,4 +863,140 @@ body {
 
 @media (max-width: 420px) {
   .libros-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+}
+
+
+/* ── Menú de Navegación (Escritorio) ── */
+.navbar-links {
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.nav-item {
+  color: var(--texto-sub);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: var(--transition);
+  position: relative;
+}
+
+/* Efecto hover con brillo neón */
+.nav-item:hover,
+.nav-item.activo {
+  color: var(--cyan);
+  text-shadow: var(--sombra-cyan);
+}
+
+/* Línea indicadora inferior animada */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--cyan);
+  transition: var(--transition);
+  box-shadow: var(--sombra-cyan);
+}
+
+.nav-item:hover::after,
+.nav-item.activo::after {
+  width: 100%;
+}
+
+/* Botón Hamburguesa (Oculto en escritorio) */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--borde);
+  color: var(--cyan);
+  font-size: 1.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.menu-toggle:hover {
+  background: rgba(9, 219, 234, 0.1);
+  box-shadow: var(--sombra-cyan);
+}
+
+/* ════════════════════════════════
+   MODAL DE CURSOS (Sección Trabajos)
+════════════════════════════════ */
+/* Sobrescribir el grid de 2 columnas del modal original */
+.modal-body.modal-body-cursos {
+  grid-template-columns: 1fr;
+  padding: 2.5rem;
+}
+
+.modal-cursos-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cursos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Tarjeta interactiva de cada curso */
+.curso-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--cyan);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.curso-item:hover {
+  background: rgba(9, 219, 234, 0.08);
+  border-color: var(--cyan);
+  transform: translateX(6px); /* Pequeño salto a la derecha */
+}
+
+.curso-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.curso-codigo {
+  color: var(--amarillo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.curso-nombre {
+  color: var(--blanco);
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.curso-arrow {
+  color: var(--cyan);
+  font-size: 1.2rem;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: var(--transition);
+}
+
+.curso-item:hover .curso-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trabajos FIE | Todos Juntos por la FIE</title>
+  <link rel="icon" type="image/png" href="loguito.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════ NAVBAR ════════════════════ -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">
+      <img class="navbar-logo" src="loguito.png" alt="Logo FIE" />
+      <span class="navbar-name">
+        TODOS JUNTOS<br><span>POR LA FIE</span>
+      </span>
+    </a>
+
+    <!-- Botón Hamburguesa (Móviles) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      ☰
+    </button>
+
+    <!-- Menú de Navegación -->
+    <div class="navbar-links" id="navbarLinks">
+      <a href="index.html" class="nav-item">Libros</a>
+      <a href="trabajos.html" class="nav-item activo">Trabajos</a>
+      <a href="practicas.html" class="nav-item">Prácticas</a>
+      <a href="examenes.html" class="nav-item">Exámenes</a>
+      <a href="cursos.html" class="nav-item">Cursos</a>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="navbar-stats">
+      <div class="stat-pill">
+        📚 <strong id="totalLibros">0</strong> libros
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════ TRABAJOS (POR CICLOS) ════════════════════ -->
+  <main class="trabajos-section" id="trabajos">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Repositorio de <span>Trabajos</span></h2>
+        <p class="section-subtitle">Selecciona un ciclo para explorar proyectos y monografías</p>
+      </div>
+      <span class="counter-badge">10 Ciclos</span>
+    </div>
+
+    <!-- Contenedor vacío: ¡Lo llenaremos con JavaScript! -->
+    <div class="ciclos-grid" id="ciclosGrid">
+      <!-- Generado por JS -->
+    </div>
+  </main>
+
+  <!-- ════════════════════ MODAL ════════════════════ -->
+  <!-- Esto es vital: JavaScript busca "modalContenido" para meter los cursos ahí -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContenido">
+      <!-- Generado por JS -->
+    </div>
+  </div>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src="loguito.png" alt="Logo" />
+      <span class="footer-name">TODOS JUNTOS <span>POR LA FIE</span></span>
+    </div>
+    <div class="footer-line"></div>
+    <p>Repositorio digital de acceso libre para estudiantes de la FIE</p>
+    <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
+  </footer>
+
+  <!-- Scripts: el orden es importante -->
+  <script src="data/malla.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/trabajos.js"></script>
+
+</body>
+</html>
