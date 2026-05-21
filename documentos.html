@@ -3,50 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Documentos y Recursos - FIE</title>
+  <title>Documentos de Asignatura | Todos Juntos por la FIE</title>
   
-  <!-- Enlaza tu CSS principal aquí -->
+  <link rel="icon" type="image/png" href="loguito.png" />
   <link rel="stylesheet" href="css/style.css">
-  
 </head>
 <body>
 
-  <!-- Puedes pegar aquí tu <header> si quieres que se vea el menú de navegación en esta página también -->
-
-  <div class="doc-container">
-    <!-- Botón para volver a la malla -->
-    <a href="index.html" class="btn-regresar">← Volver a la Malla Curricular</a>
-
-    <!-- Cabecera Dinámica del Curso -->
-    <div class="header-curso" id="cursoHeader">
-      <span class="codigo" id="cursoCodigo">CODIGO</span>
-      <h1 id="cursoNombre">Cargando asignatura...</h1>
-      <p id="cursoDetalles">Malla Curricular de Ingeniería Económica</p>
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">
+      <img class="navbar-logo" src="loguito.png" alt="Logo FIE" />
+      <span class="navbar-name">
+        TODOS JUNTOS<br><span>POR LA FIE</span>
+      </span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <div class="navbar-links" id="navbarLinks">
+      <a href="index.html" class="nav-item">Libros</a>
+      <a href="trabajos.html" class="nav-item activo">Trabajos</a>
+      <a href="practicas.html" class="nav-item">Prácticas</a>
+      <a href="examenes.html" class="nav-item">Exámenes</a>
+      <a href="cursos.html" class="nav-item">Cursos</a>
     </div>
+  </nav>
 
-    <!-- Sección 1: Trabajos, Prácticas y Evaluaciones -->
-    <h2 class="seccion-titulo">Trabajos y Evaluaciones de Alumnos</h2>
-    <div class="grid-recursos" id="gridTrabajos">
-      <!-- Se inyecta con JavaScript -->
+  <section class="hero" style="height: auto; padding: 120px 20px 80px;">
+    <div class="hero-geo hero-geo-1"></div>
+    <div class="hero-geo hero-geo-2"></div>
+    <div class="hero-geo hero-geo-3"></div>
+    <div class="hero-geo hero-geo-4"></div>
+
+    <div class="hero-badge" id="cursoDetalles">Plan Curricular FIE</div>
+
+    <h1 style="margin-top: 20px; font-size: clamp(2.5rem, 5vw, 4.5rem);">
+      <span class="line-color" id="cursoNombre">Cargando asignatura...</span>
+    </h1>
+
+    <div class="hero-group" id="cursoCodigo" style="margin-top: 15px; display: inline-block;">CODIGO</div>
+
+    <p style="margin-top: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      Explora todos los trabajos, prácticas, exámenes y textos base correspondientes a esta asignatura.
+    </p>
+
+    <a href="trabajos.html" class="hero-btn" style="margin-top: 30px;">
+      ← Volver a los Ciclos
+    </a>
+  </section>
+
+  <main class="contenido">
+    
+    <h2 class="titulo" id="tituloContenido">Trabajos y Evaluaciones</h2>
+    
+    <div class="libros-grid" id="gridTrabajos" style="margin-top: 50px;">
+      </div>
+
+    <h2 class="titulo" id="tituloContenido" style="margin-top: 100px;">Libros Recomendados</h2>
+    <div class="libros-grid" id="gridLibros" style="margin-top: 50px;">
+      </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src="loguito.png" alt="Logo" />
+      <span class="footer-name">TODOS JUNTOS <span>POR LA FIE</span></span>
     </div>
+    <div class="footer-line"></div>
+    <p>Repositorio digital de acceso libre para estudiantes de la FIE</p>
+    <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
+  </footer>
 
-    <!-- Sección 2: Libros Recomendados para esta Asignatura -->
-    <h2 class="seccion-titulo">Libros y Textos Base</h2>
-    <div class="grid-recursos" id="gridLibros">
-      <!-- Se inyecta con JavaScript -->
-    </div>
-  </div>
-
-  <!-- Inclusión de los scripts de datos -->
   <script src="data/malla.js"></script>
-  <script>
-    const baseTrabajos = [
-      { id: 1, curso: "ECO201", titulo: "Modelos de Oferta y Demanda en Puno", descripcion: "Trabajo grupal sobre la elasticidad de los productos.", tipo: "trabajo", fecha: "2025-I", archivo: "#" },
-      { id: 2, curso: "ECO201", titulo: "Examen Parcial Resuelto - 2024 II", descripcion: "Solucionario completo del primer examen parcial.", tipo: "examen", fecha: "2024-II", archivo: "#" },
-      { id: 3, curso: "ECO208", titulo: "Guía Práctica para ARIMA en Stata", descripcion: "Apuntes paso a paso para la modelación de series.", tipo: "apunte", fecha: "2025-II", archivo: "#" }
-    ];
+  <script src="data/libros.js"></script>
+  <script src="data/documentos.js"></script>
 
+  <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // 1. Extraer el parámetro de la URL
       const params = new URLSearchParams(window.location.search);
       const codigoCurso = params.get("curso");
 
@@ -55,6 +88,7 @@
         return;
       }
 
+      // 2. Buscar datos en malla.js
       let cursoEncontrado = null;
       let cicloRomano = "";
 
@@ -67,59 +101,76 @@
         }
       }
 
+      // 3. Imprimir datos en el Hero
       if (cursoEncontrado) {
         document.getElementById("cursoCodigo").textContent = cursoEncontrado.codigo;
         document.getElementById("cursoNombre").textContent = cursoEncontrado.nombre;
-        document.getElementById("cursoDetalles").textContent = `Asignatura perteneciente al Ciclo ${cicloRomano} — Ingeniería Económica`;
+        document.getElementById("cursoDetalles").textContent = `Ciclo ${cicloRomano} — Ingeniería Económica`;
         
         cargarTrabajos(codigoCurso);
         cargarLibrosAsociados(cursoEncontrado.nombre);
       } else {
         document.getElementById("cursoNombre").textContent = "Asignatura no encontrada";
       }
+
+      // 4. Activar Menú Móvil
+      const menuToggle = document.getElementById('menuToggle');
+      const navbarLinks = document.getElementById('navbarLinks');
+      if (menuToggle && navbarLinks) {
+        menuToggle.addEventListener('click', () => navbarLinks.classList.toggle('mostrar'));
+      }
     });
 
+    /* --- Renderizar Trabajos usando tu clase .recurso --- */
+    /* --- Renderizar Trabajos con Portada (Estilo Libros) --- */
     function cargarTrabajos(codigo) {
       const grid = document.getElementById("gridTrabajos");
       const filtrados = baseTrabajos.filter(t => t.curso === codigo);
 
       if (filtrados.length === 0) {
         grid.innerHTML = `
-          <div class="no-data">
-            <span>📂</span>
-            <h3>No hay documentos subidos aún</h3>
-            <p>Sé el primero en colaborar compartiendo tus trabajos o apuntes de esta asignatura.</p>
+          <div style="grid-column: 1 / -1; text-align: center; padding: 50px; background: rgba(0,0,0,0.02); border-radius: 20px; border: 2px dashed #ccc;">
+            <span style="font-size: 3rem;">📂</span>
+            <h3 style="color: #0b7a00; margin-top: 15px;">No hay documentos subidos</h3>
+            <p style="color: #666; margin-top: 10px;">Sé el primero en aportar material de estudio para este curso.</p>
           </div>
         `;
         return;
       }
 
-      grid.innerHTML = filtrados.map(t => `
-        <div class="card-recurso">
-          <div>
-            <div class="recurso-meta">
-              <span class="badge-tipo tipo-${t.tipo}">${t.tipo}</span>
-              <span class="recurso-fecha">Semestre: ${t.fecha}</span>
+      // Reutilizamos tu clase .libro-card para que se vea idéntico al Index
+      grid.innerHTML = filtrados.map((t, i) => `
+        <div class="libro-card" style="animation-delay: ${i * 0.05}s">
+          <div class="libro-portada">
+            ${t.portada
+              ? `<img class="libro-portada-img" src="${t.portada}" alt="${t.titulo}" 
+                   onerror="this.parentElement.innerHTML='<div class=\\'libro-portada-placeholder\\'><span>📄</span><p>Sin portada</p></div>'">`
+              : `<div class="libro-portada-placeholder"><span>📄</span><p>Sin portada</p></div>`
+            }
+            <span class="libro-categoria-tag" style="background: #0b7a00; color: #fff;">${t.tipo}</span>
+            <div class="libro-overlay">
+              <a href="${t.archivo}" target="_blank" style="text-decoration:none;">
+                <span class="btn-ver">Abrir Documento →</span>
+              </a>
             </div>
-            <h3 class="recurso-titulo">${t.titulo}</h3>
-            <p class="recurso-desc">${t.descripcion}</p>
           </div>
-          <a href="${t.archivo}" target="_blank" class="btn-descarga-doc">📥 Descargar PDF</a>
+          <div class="libro-info">
+            <div class="libro-titulo">${t.titulo}</div>
+            <div class="libro-autor" style="font-size: 0.85rem; color: #666; margin-top: 5px;">${t.descripcion}</div>
+            <div class="libro-meta" style="margin-top: 12px;">
+              <span class="libro-anio">📅 Semestre: ${t.fecha}</span>
+            </div>
+          </div>
         </div>
       `).join("");
     }
 
+    /* --- Renderizar Libros usando exactamente tu diseño del index --- */
     function cargarLibrosAsociados(nombreCurso) {
       const grid = document.getElementById("gridLibros");
       
       if (typeof libros === 'undefined') {
-        grid.innerHTML = `
-          <div class="no-data">
-            <span>📚</span>
-            <h3>Consultando biblioteca...</h3>
-            <p>Los libros de especialidad se administran desde el panel principal.</p>
-          </div>
-        `;
+        grid.innerHTML = '<p style="text-align:center; width:100%;">Biblioteca no disponible.</p>';
         return;
       }
 
@@ -129,26 +180,39 @@
 
       if (filtrados.length === 0) {
         grid.innerHTML = `
-          <div class="no-data">
-            <span>📚</span>
-            <h3>Sin libros específicos registrados</h3>
-            <p>Revisa la sección general de libros en la página de inicio.</p>
+          <div style="grid-column: 1 / -1; text-align: center; padding: 50px; background: rgba(0,0,0,0.02); border-radius: 20px; border: 2px dashed #ccc;">
+            <span style="font-size: 3rem;">📚</span>
+            <h3 style="color: #0b7a00; margin-top: 15px;">Sin libros asignados</h3>
+            <p style="color: #666; margin-top: 10px;">Busca en el catálogo general desde el inicio.</p>
           </div>
         `;
         return;
       }
 
-      grid.innerHTML = filtrados.map(l => `
-        <div class="card-recurso">
-          <div>
-            <div class="recurso-meta">
-              <span class="badge-tipo tipo-apunte">Libro base</span>
-              <span class="recurso-fecha">${l.edicion || '1ra Edición'}</span>
+      // Este HTML es exactamente igual al que usas en main.js para generar los libros
+      grid.innerHTML = filtrados.map((libro, i) => `
+        <div class="libro-card" style="animation-delay: ${i * 0.05}s">
+          <div class="libro-portada">
+            ${libro.portada
+              ? `<img class="libro-portada-img" src="${libro.portada}" alt="${libro.titulo}" 
+                   onerror="this.parentElement.innerHTML='<div class=\\'libro-portada-placeholder\\'><span>📚</span><p>Sin portada</p></div>'">`
+              : `<div class="libro-portada-placeholder"><span>📚</span><p>Sin portada</p></div>`
+            }
+            <span class="libro-categoria-tag">${libro.categoria}</span>
+            <div class="libro-overlay">
+              <a href="${libro.archivo}" target="_blank" style="text-decoration:none;">
+                <span class="btn-ver">Ver libro →</span>
+              </a>
             </div>
-            <h3 class="recurso-titulo">${l.titulo}</h3>
-            <p class="recurso-desc">Autor: <strong>${l.autor}</strong><br>${l.descripcion || ''}</p>
           </div>
-          <a href="${l.archivo}" target="_blank" class="btn-descarga-doc">📖 Ver Libro</a>
+          <div class="libro-info">
+            <div class="libro-titulo">${libro.titulo}</div>
+            <div class="libro-autor">${libro.autor}</div>
+            <div class="libro-meta">
+              <span class="libro-anio">📅 ${libro.anio}</span>
+              ${libro.edicion ? `<span>${libro.edicion}</span>` : ""}
+            </div>
+          </div>
         </div>
       `).join("");
     }
