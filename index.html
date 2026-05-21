@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Repositorio digital de libros de la FIE — Todos Juntos por la FIE" />
+  <title>Repositorio FIE | Todos Juntos por la FIE</title>
+
+  <!-- Favicon (usa el logo) -->
+  <link rel="icon" type="image/png" href="logo.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ════════════════════ NAVBAR ════════════════════ -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">
+      <img class="navbar-logo" src="logo.png" alt="Logo FIE" />
+      <span class="navbar-name">
+        TODOS JUNTOS<br><span>POR LA FIE</span>
+      </span>
+    </a>
+
+    <div class="navbar-stats">
+      <div class="stat-pill">
+        📚 <strong id="totalLibros">0</strong> libros disponibles
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <section class="hero">
+    <!-- Elementos decorativos -->
+    <div class="hero-geo hero-geo-1"></div>
+    <div class="hero-geo hero-geo-2"></div>
+    <div class="hero-geo hero-geo-3"></div>
+    <div class="hero-geo hero-geo-4"></div>
+
+    <div class="hero-badge">Repositorio Académico Digital</div>
+
+    <div class="hero-logo-wrap">
+      <img class="hero-logo" src="logo.png" alt="Logo Todos Juntos por la FIE" />
+    </div>
+
+    <h1>
+      Biblioteca<br>
+      <span class="line-color">Digital FIE</span>
+    </h1>
+
+    <div class="hero-group">⚡ Todos Juntos por la FIE ⚡</div>
+
+    <p>
+      Accede de forma gratuita a los libros y materiales académicos 
+      de nuestra facultad. Conocimiento compartido para todos.
+    </p>
+
+    <!-- Barra de búsqueda -->
+    <div class="search-wrap">
+      <input 
+        type="text" 
+        id="buscador" 
+        placeholder="Buscar por título, autor o materia…" 
+        autocomplete="off"
+      />
+      <button id="btnBuscar" aria-label="Buscar">🔍</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════ FILTROS ════════════════════ -->
+  <div class="filtros-section" id="filtros">
+    <!-- Generado por JS -->
+  </div>
+
+  <!-- ════════════════════ LIBROS ════════════════════ -->
+  <main class="libros-section">
+    <div class="section-header">
+      <h2 class="section-title">
+        Colección de <span>Libros</span>
+      </h2>
+      <span class="counter-badge" id="contadorLibros">0 libros</span>
+    </div>
+
+    <div class="libros-grid" id="librosGrid">
+      <!-- Generado por JS -->
+    </div>
+  </main>
+
+  <!-- ════════════════════ MODAL ════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContenido">
+      <!-- Generado por JS -->
+    </div>
+  </div>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src="logo.png" alt="Logo" />
+      <span class="footer-name">TODOS JUNTOS <span>POR LA FIE</span></span>
+    </div>
+    <div class="footer-line"></div>
+    <p>Repositorio digital de acceso libre para estudiantes de la FIE</p>
+    <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
+  </footer>
+
+  <!-- Scripts: primero los datos, luego la lógica -->
+  <script src="data/libros.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
