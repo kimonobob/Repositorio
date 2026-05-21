@@ -201,19 +201,26 @@ body {
   font-size: 0.85rem;
 }
 
+
 .hero-logo-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;           /* un poco más de espacio abajo */
   animation: fadeDown 0.7s ease 0.1s both;
 }
 
 .hero-logo {
-  width: 100px;
-  height: 100px;
+  width: clamp(140px, 22vw, 240px);   /* Responsive: crece según el tamaño de pantalla */
+  height: clamp(140px, 22vw, 240px);
   object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(253,194,14,0.6)) drop-shadow(0 0 40px rgba(122,28,206,0.4));
+  filter: drop-shadow(0 0 25px rgba(253,194,14,0.7)) 
+          drop-shadow(0 0 55px rgba(122,28,206,0.5));
   animation: logoPulse 3s ease-in-out infinite;
+  transition: transform 0.4s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.12);   /* Efecto de agrandar al pasar el mouse */
 }
 
 @keyframes logoPulse {

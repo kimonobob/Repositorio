@@ -28,14 +28,36 @@ const libros = [
   },
   {
     id: 3,
-    titulo: "Electrónica: Teoría de Circuitos",
+    titulo: "Macroeconomics",
     autor: "Robert L. Boylestad",
-    categoria: "Electronica",
-    anio: 2011,
-    portada: "portadas/electronica-boylestad.jpg",
-    archivo: "libros/electronica-boylestad.pdf",
-    descripcion: "Dispositivos y teoría de circuitos electrónicos.",
-    edicion: "10ma Edición"
+    categoria: "Macroeconomía",
+    anio: 2013,
+    portada: "portadas/blanchard.png",
+    archivo: "libros/Macroeconomics - Blanchard.pdf",
+    descripcion: "libro macro",
+    edicion: "6ta Edición"
+  },
+  {
+    id: 4,
+    titulo: "Macroeconomía avanzada",
+    autor: "David Romer",
+    categoria: "Macroeconomía",
+    anio: 2006,
+    portada: "portadas/romer.png",
+    archivo: "libros/macroeconomía avanzada.pdf",
+    descripcion: "sirve de base para los estudiantes que quieren dedicarse a la investigación en el campo de la macroeconomía y de la economía monetaria.",
+    edicion: "3ra Edición"
+  },
+  {
+    id: 5,
+    titulo: "MACROECONOMÍA: ENFOQUES Y MODELOS Ejercicios resueltos",
+    autor: "Felix Jiménez",
+    categoria: "Macroeconomía",
+    anio: 2016,
+    portada: "portadas/fjimenez1.png",
+    archivo: "libros/ME002_Macro_Enfoques y ejercicios.pdf",
+    descripcion: "sirve de base para los estudiantes que quieren dedicarse a la investigación en el campo de la macroeconomía y de la economía monetaria.",
+    edicion: "2da Edición"
   },
   // ──────────────────────────────────────────────────
   // AGREGA MÁS LIBROS AQUÍ con el mismo formato:
