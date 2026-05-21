@@ -82,7 +82,7 @@ const libros = [
     edicion: "1ra Edición"
   },
   {
-    id: 7,
+    id: 8,
     titulo: "Crecimiento Económico Enfoques y Modelos",
     autor: "Felix Jiménez",
     categoria: "Macroeconomía",
