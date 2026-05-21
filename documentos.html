@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentos y Recursos - FIE</title>
+  
+  <!-- Enlaza tu CSS principal aquí -->
+  <link rel="stylesheet" href="css/style.css">
+  
+</head>
+<body>
+
+  <!-- Puedes pegar aquí tu <header> si quieres que se vea el menú de navegación en esta página también -->
+
+  <div class="doc-container">
+    <!-- Botón para volver a la malla -->
+    <a href="index.html" class="btn-regresar">← Volver a la Malla Curricular</a>
+
+    <!-- Cabecera Dinámica del Curso -->
+    <div class="header-curso" id="cursoHeader">
+      <span class="codigo" id="cursoCodigo">CODIGO</span>
+      <h1 id="cursoNombre">Cargando asignatura...</h1>
+      <p id="cursoDetalles">Malla Curricular de Ingeniería Económica</p>
+    </div>
+
+    <!-- Sección 1: Trabajos, Prácticas y Evaluaciones -->
+    <h2 class="seccion-titulo">Trabajos y Evaluaciones de Alumnos</h2>
+    <div class="grid-recursos" id="gridTrabajos">
+      <!-- Se inyecta con JavaScript -->
+    </div>
+
+    <!-- Sección 2: Libros Recomendados para esta Asignatura -->
+    <h2 class="seccion-titulo">Libros y Textos Base</h2>
+    <div class="grid-recursos" id="gridLibros">
+      <!-- Se inyecta con JavaScript -->
+    </div>
+  </div>
+
+  <!-- Inclusión de los scripts de datos -->
+  <script src="data/malla.js"></script>
+  <script>
+    const baseTrabajos = [
+      { id: 1, curso: "ECO201", titulo: "Modelos de Oferta y Demanda en Puno", descripcion: "Trabajo grupal sobre la elasticidad de los productos.", tipo: "trabajo", fecha: "2025-I", archivo: "#" },
+      { id: 2, curso: "ECO201", titulo: "Examen Parcial Resuelto - 2024 II", descripcion: "Solucionario completo del primer examen parcial.", tipo: "examen", fecha: "2024-II", archivo: "#" },
+      { id: 3, curso: "ECO208", titulo: "Guía Práctica para ARIMA en Stata", descripcion: "Apuntes paso a paso para la modelación de series.", tipo: "apunte", fecha: "2025-II", archivo: "#" }
+    ];
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const codigoCurso = params.get("curso");
+
+      if (!codigoCurso) {
+        document.getElementById("cursoNombre").textContent = "Curso no especificado";
+        return;
+      }
+
+      let cursoEncontrado = null;
+      let cicloRomano = "";
+
+      for (const ciclo of mallaCurricular) {
+        const curso = ciclo.cursos.find(c => c.codigo === codigoCurso);
+        if (curso) {
+          cursoEncontrado = curso;
+          cicloRomano = ciclo.romano;
+          break;
+        }
+      }
+
+      if (cursoEncontrado) {
+        document.getElementById("cursoCodigo").textContent = cursoEncontrado.codigo;
+        document.getElementById("cursoNombre").textContent = cursoEncontrado.nombre;
+        document.getElementById("cursoDetalles").textContent = `Asignatura perteneciente al Ciclo ${cicloRomano} — Ingeniería Económica`;
+        
+        cargarTrabajos(codigoCurso);
+        cargarLibrosAsociados(cursoEncontrado.nombre);
+      } else {
+        document.getElementById("cursoNombre").textContent = "Asignatura no encontrada";
+      }
+    });
+
+    function cargarTrabajos(codigo) {
+      const grid = document.getElementById("gridTrabajos");
+      const filtrados = baseTrabajos.filter(t => t.curso === codigo);
+
+      if (filtrados.length === 0) {
+        grid.innerHTML = `
+          <div class="no-data">
+            <span>📂</span>
+            <h3>No hay documentos subidos aún</h3>
+            <p>Sé el primero en colaborar compartiendo tus trabajos o apuntes de esta asignatura.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtrados.map(t => `
+        <div class="card-recurso">
+          <div>
+            <div class="recurso-meta">
+              <span class="badge-tipo tipo-${t.tipo}">${t.tipo}</span>
+              <span class="recurso-fecha">Semestre: ${t.fecha}</span>
+            </div>
+            <h3 class="recurso-titulo">${t.titulo}</h3>
+            <p class="recurso-desc">${t.descripcion}</p>
+          </div>
+          <a href="${t.archivo}" target="_blank" class="btn-descarga-doc">📥 Descargar PDF</a>
+        </div>
+      `).join("");
+    }
+
+    function cargarLibrosAsociados(nombreCurso) {
+      const grid = document.getElementById("gridLibros");
+      
+      if (typeof libros === 'undefined') {
+        grid.innerHTML = `
+          <div class="no-data">
+            <span>📚</span>
+            <h3>Consultando biblioteca...</h3>
+            <p>Los libros de especialidad se administran desde el panel principal.</p>
+          </div>
+        `;
+        return;
+      }
+
+      const filtrados = libros.filter(l => {
+        return nombreCurso.toLowerCase().includes(l.categoria.toLowerCase()) || l.categoria === "Todos";
+      });
+
+      if (filtrados.length === 0) {
+        grid.innerHTML = `
+          <div class="no-data">
+            <span>📚</span>
+            <h3>Sin libros específicos registrados</h3>
+            <p>Revisa la sección general de libros en la página de inicio.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtrados.map(l => `
+        <div class="card-recurso">
+          <div>
+            <div class="recurso-meta">
+              <span class="badge-tipo tipo-apunte">Libro base</span>
+              <span class="recurso-fecha">${l.edicion || '1ra Edición'}</span>
+            </div>
+            <h3 class="recurso-titulo">${l.titulo}</h3>
+            <p class="recurso-desc">Autor: <strong>${l.autor}</strong><br>${l.descripcion || ''}</p>
+          </div>
+          <a href="${l.archivo}" target="_blank" class="btn-descarga-doc">📖 Ver Libro</a>
+        </div>
+      `).join("");
+    }
+  </script>
+</body>
+</html>

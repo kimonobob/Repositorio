@@ -6,6 +6,439 @@
   <title>Trabajos FIE | Todos Juntos por la FIE</title>
   <link rel="icon" type="image/png" href="loguito.png" />
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ════════════════════════════════
+       HERO — TRABAJOS
+    ════════════════════════════════ */
+    .hero-trabajos {
+      position: relative;
+      padding: 4rem 2.5rem 3.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-trabajos::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(9,219,234,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Partículas decorativas específicas de esta sección */
+    .hero-trabajos .hero-geo-1 {
+      width: 160px; height: 160px;
+      border: 2px solid rgba(9,219,234,0.15);
+      top: 8%; left: 4%;
+    }
+    .hero-trabajos .hero-geo-2 {
+      width: 90px; height: 90px;
+      border: 2px solid rgba(253,194,14,0.2);
+      top: 15%; right: 6%;
+    }
+    .hero-trabajos .hero-geo-3 {
+      width: 50px; height: 50px;
+      background: rgba(122,28,206,0.12);
+      bottom: 10%; left: 10%;
+    }
+    .hero-trabajos .hero-geo-4 {
+      width: 45px; height: 45px;
+      border: 2px solid rgba(9,219,234,0.25);
+      bottom: 15%; right: 8%;
+    }
+
+    .hero-trabajos .hero-badge {
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-trabajos h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      animation: fadeDown 0.8s ease 0.1s both;
+    }
+
+    .hero-trabajos h1 .line-color {
+      background: linear-gradient(90deg, var(--cyan), var(--amarillo));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-trabajos p {
+      font-size: 1rem;
+      color: var(--texto-sub);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      animation: fadeDown 0.8s ease 0.2s both;
+    }
+
+    /* Stats mini en el hero */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeDown 0.8s ease 0.3s both;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--borde);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--amarillo), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--texto-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* ════════════════════════════════
+       SECCIÓN CICLOS
+    ════════════════════════════════ */
+    .trabajos-section {
+      padding: 0 2.5rem 5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* ── Grid de ciclos ── */
+    .ciclos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* ── Card de ciclo ── */
+    .ciclo-card {
+      background: var(--card-bg);
+      border: 1px solid var(--borde);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: var(--transition);
+      animation: fadeIn 0.4s ease both;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ciclo-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--cyan);
+      box-shadow: var(--sombra-cyan), 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Barra de acento superior con color único por ciclo */
+    .ciclo-accent {
+      height: 4px;
+      width: 100%;
+    }
+
+    /* Cabecera de la card */
+    .ciclo-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.25rem 1rem;
+    }
+
+    /* Número del ciclo en estilo prominente */
+    .ciclo-numero-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .ciclo-numero-bg {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ciclo-numero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    }
+
+    .ciclo-numero {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--blanco);
+      position: relative;
+      z-index: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .ciclo-romano {
+      font-size: 0.55rem;
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .ciclo-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ciclo-titulo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--blanco);
+      margin-bottom: 0.2rem;
+    }
+
+    .ciclo-semestre {
+      font-size: 0.75rem;
+      color: var(--texto-sub);
+    }
+
+    /* Materias preview */
+    .ciclo-materias {
+      padding: 0 1.25rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex: 1;
+    }
+
+    .materia-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--texto-sub);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .materia-pill:last-child {
+      border-bottom: none;
+    }
+
+    .materia-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .materia-mas {
+      font-size: 0.72rem;
+      color: var(--texto-sub);
+      opacity: 0.6;
+      padding-left: 1rem;
+      margin-top: 0.1rem;
+    }
+
+    /* Footer de la card */
+    .ciclo-footer {
+      padding: 0.8rem 1.25rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ciclo-badge-count {
+      font-size: 0.72rem;
+      font-weight: 600;
+      font-family: var(--font-display);
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--texto-sub);
+    }
+
+    .ciclo-arrow {
+      font-size: 0.8rem;
+      color: var(--texto-sub);
+      transition: var(--transition);
+    }
+
+    .ciclo-card:hover .ciclo-arrow {
+      color: var(--cyan);
+      transform: translateX(4px);
+    }
+
+    /* ════════════════════════════════
+       MODAL MEJORADO — CICLO / CURSOS
+    ════════════════════════════════ */
+    .modal-ciclo-header {
+      padding: 1.75rem 2rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .modal-ciclo-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-ciclo-icon span {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--blanco);
+    }
+
+    .modal-ciclo-meta h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--blanco);
+      margin-bottom: 0.2rem;
+    }
+
+    .modal-ciclo-meta p {
+      font-size: 0.8rem;
+      color: var(--texto-sub);
+    }
+
+    .modal-cursos-body {
+      padding: 1.25rem 2rem 2rem;
+    }
+
+    .cursos-section-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--texto-sub);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .cursos-list-mejorada {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .curso-item-mejorado {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--borde);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .curso-item-mejorado:hover {
+      background: rgba(9,219,234,0.06);
+      border-color: rgba(9,219,234,0.4);
+      transform: translateX(4px);
+    }
+
+    .curso-item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .curso-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .curso-item-codigo {
+      font-size: 0.65rem;
+      color: var(--amarillo);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+
+    .curso-item-nombre {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--blanco);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .curso-item-chevron {
+      color: var(--texto-sub);
+      font-size: 0.9rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .curso-item-mejorado:hover .curso-item-chevron {
+      color: var(--cyan);
+    }
+
+    /* ════════════════════════════════
+       RESPONSIVE
+    ════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero-trabajos { padding: 3rem 1.2rem 2.5rem; }
+      .hero-stats { gap: 0.8rem; }
+      .hero-stat { padding: 0.6rem 1rem; }
+      .hero-stat-num { font-size: 1.4rem; }
+      .trabajos-section { padding: 0 1.2rem 3rem; }
+      .ciclos-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .modal-ciclo-header { padding: 1.25rem 1.25rem 1rem; }
+      .modal-cursos-body { padding: 1rem 1.25rem 1.5rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -18,12 +451,8 @@
       </span>
     </a>
 
-    <!-- Botón Hamburguesa (Móviles) -->
-    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-      ☰
-    </button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
 
-    <!-- Menú de Navegación -->
     <div class="navbar-links" id="navbarLinks">
       <a href="index.html" class="nav-item">Libros</a>
       <a href="trabajos.html" class="nav-item activo">Trabajos</a>
@@ -32,32 +461,67 @@
       <a href="cursos.html" class="nav-item">Cursos</a>
     </div>
 
-    <!-- Estadísticas -->
     <div class="navbar-stats">
       <div class="stat-pill">
-        📚 <strong id="totalLibros">0</strong> libros
+        📂 <strong id="totalTrabajos">0</strong> trabajos
       </div>
     </div>
   </nav>
 
-  <!-- ════════════════════ TRABAJOS (POR CICLOS) ════════════════════ -->
+  <!-- ════════════════════ HERO ════════════════════ -->
+  <section class="hero-trabajos">
+    <div class="hero-geo hero-geo-1"></div>
+    <div class="hero-geo hero-geo-2"></div>
+    <div class="hero-geo hero-geo-3"></div>
+    <div class="hero-geo hero-geo-4"></div>
+
+    <div class="hero-badge">Repositorio Académico Digital</div>
+
+    <h1>
+      Repositorio de<br>
+      <span class="line-color">Trabajos FIE</span>
+    </h1>
+
+    <p>
+      Proyectos, monografías y trabajos académicos organizados
+      por ciclo. Aprende de tus compañeros.
+    </p>
+
+    <!-- Mini stats -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statCiclos">10</span>
+        <span class="hero-stat-label">Ciclos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statCursos">—</span>
+        <span class="hero-stat-label">Cursos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statWorks">—</span>
+        <span class="hero-stat-label">Trabajos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════ CICLOS ════════════════════ -->
   <main class="trabajos-section" id="trabajos">
     <div class="section-header">
       <div>
-        <h2 class="section-title">Repositorio de <span>Trabajos</span></h2>
-        <p class="section-subtitle">Selecciona un ciclo para explorar proyectos y monografías</p>
+        <h2 class="section-title">Selecciona un <span>Ciclo</span></h2>
+        <p class="section-subtitle" style="font-size:0.85rem;color:var(--texto-sub);margin-top:0.25rem;">
+          Explora proyectos y monografías por semestre
+        </p>
       </div>
       <span class="counter-badge">10 Ciclos</span>
     </div>
 
-    <!-- Contenedor vacío: ¡Lo llenaremos con JavaScript! -->
     <div class="ciclos-grid" id="ciclosGrid">
       <!-- Generado por JS -->
     </div>
   </main>
 
   <!-- ════════════════════ MODAL ════════════════════ -->
-  <!-- Esto es vital: JavaScript busca "modalContenido" para meter los cursos ahí -->
   <div class="modal-overlay" id="modalOverlay">
     <div class="modal" id="modalContenido">
       <!-- Generado por JS -->
@@ -75,7 +539,12 @@
     <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
   </footer>
 
-  <!-- Scripts: el orden es importante -->
+  <!-- Scripts -->
+  <script src="data/malla.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/trabajos.js"></script>
+
+  <!-- ── Lógica de trabajos (se fusiona con trabajos.js) ── -->
   <script src="data/malla.js"></script>
   <script src="js/main.js"></script>
   <script src="js/trabajos.js"></script>
