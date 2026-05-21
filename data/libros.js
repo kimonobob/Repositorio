@@ -59,6 +59,39 @@ const libros = [
     descripcion: "sirve de base para los estudiantes que quieren dedicarse a la investigación en el campo de la macroeconomía y de la economía monetaria.",
     edicion: "2da Edición"
   },
+  {
+    id: 6,
+    titulo: "APUNTES DE MACROECONOMÍA INTERMEDIA",
+    autor: "Felix Jiménez",
+    categoria: "Macroeconomía",
+    anio: 2020,
+    portada: "portadas/fjimenez2.png",
+    archivo: "libros/ME006_Apuntes de macro intermedia.pdf",
+    descripcion: "texto introductorio de macroeconomía intermedia.",
+    edicion: "6ta Edición"
+  },
+   {
+    id: 7,
+    titulo: "ECONOMÍA DE LAS POLÍTICAS SOCIALES",
+    autor: "Carlos Parodi Trece",
+    categoria: "Macroeconomía",
+    anio: 1997,
+    portada: "portadas/parodi.png",
+    archivo: "libros/economia de las politicas sociales.pdf",
+    descripcion: "texto introductorio de macroeconomía intermedia.",
+    edicion: "1ra Edición"
+  },
+  {
+    id: 7,
+    titulo: "Crecimiento Económico Enfoques y Modelos",
+    autor: "Felix Jiménez",
+    categoria: "Macroeconomía",
+    anio: 2011,
+    portada: "portadas/fcrecimiento.png",
+    archivo: "libros/Crecimiento Económico Enfoques y Modelos - Jiménez.pdf",
+    descripcion: "texto de enfoques y modelos teóricos de crecimiento económico.",
+    edicion: "1ra Edición"
+  },
   // ──────────────────────────────────────────────────
   // AGREGA MÁS LIBROS AQUÍ con el mismo formato:
   // {
@@ -79,9 +112,9 @@ const libros = [
 const categorias = [
   "Todos",
   "Macroeconomía",
-  "Electronica",
-  "Telecomunicaciones",
-  "Sistemas",
-  "Matematicas",
+  "Microeconomía",
+  "Matemáticas",
+  "Estadística",
+  "Econometría",
   "Otro"
 ];
