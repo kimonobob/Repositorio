@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cursos de Ingeniería Económica — Todos Juntos por la FIE" />
+  <title>Cursos | Repositorio FIE</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="loguito.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/cursos.css" />
+</head>
+<body>
+
+  <!-- ════════════════════ NAVBAR ════════════════════ -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">
+      <img class="navbar-logo" src="loguito.png" alt="Logo FIE" />
+      <span class="navbar-name">
+        TODOS JUNTOS<br><span>POR LA FIE</span>
+      </span>
+    </a>
+
+    <!-- Botón Hamburguesa (Móviles) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+      ☰
+    </button>
+
+    <!-- Menú de Navegación -->
+    <div class="navbar-links" id="navbarLinks">
+      <a href="index.html" class="nav-item">Libros</a>
+      <a href="trabajos.html" class="nav-item">Trabajos</a>
+      <a href="cursos.html" class="nav-item activo">Cursos</a>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="navbar-stats">
+      <div class="stat-pill">
+        🎥 <strong id="totalVideos">0</strong> videos
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════ HERO COMPACTO ════════════════════ -->
+  <section class="hero-compact">
+    <div class="hero-compact-content">
+      <div class="hero-badge">📚 Videoteca Académica</div>
+      <h1>Cursos en Video <span class="line-color">FIE</span></h1>
+      <p>Materiales de estudio organizados por área académica</p>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <div class="search-wrap">
+      <input 
+        type="text" 
+        id="buscadorCursos" 
+        placeholder="Buscar curso, materia o profesor..." 
+        autocomplete="off"
+      />
+      <button id="btnBuscarCurso" aria-label="Buscar">🔍</button>
+    </div>
+  </section>
+
+  <!-- ════════════════════ SIDEBAR + CONTENIDO ════════════════════ -->
+  <div class="youtube-layout">
+    
+    <!-- SIDEBAR (Áreas) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h3>📂 Áreas</h3>
+      </div>
+      
+      <div class="sidebar-menu" id="sidebarMenu">
+        <!-- Generado por JS -->
+      </div>
+    </aside>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+      
+      <!-- Breadcrumb -->
+      <div class="breadcrumb" id="breadcrumb">
+        <span class="breadcrumb-home">🏠 Inicio</span>
+        <span class="breadcrumb-separator">›</span>
+        <span class="breadcrumb-current">Todos los cursos</span>
+      </div>
+
+      <!-- Título de sección -->
+      <div class="section-header-yt">
+        <h2 class="section-title-yt" id="tituloSeccion">
+          📚 Todos los Cursos
+        </h2>
+        <span class="counter-badge" id="contadorVideos">0 videos</span>
+      </div>
+
+      <!-- Grid estilo YouTube -->
+      <div class="videos-grid" id="videosGrid">
+        <!-- Generado por JS -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ════════════════════ MODAL VIDEO ════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal modal-video" id="modalContenido">
+      <!-- Generado por JS -->
+    </div>
+  </div>
+
+  <!-- ════════════════════ FOOTER ════════════════════ -->
+  <footer class="footer">
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src="loguito.png" alt="Logo" />
+      <span class="footer-name">TODOS JUNTOS <span>POR LA FIE</span></span>
+    </div>
+    <div class="footer-line"></div>
+    <p>Repositorio digital de acceso libre para estudiantes de la FIE</p>
+    <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="data/cursos.js"></script>
+  <script src="js/cursos.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

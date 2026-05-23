@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prácticas FIE | Todos Juntos por la FIE</title>
+  <link rel="icon" type="image/png" href="loguito.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ════════════════════════════════
+       HERO — PRÁCTICAS
+    ════════════════════════════════ */
+    .hero-trabajos {
+      position: relative;
+      padding: 4rem 2.5rem 3.5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-trabajos::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      /* Cambiamos el resplandor a un tono más verdoso/dorado para variar un poco */
+      background: radial-gradient(circle, rgba(22, 179, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-trabajos .hero-geo-1 {
+      width: 160px; height: 160px;
+      border: 2px solid rgba(22, 179, 0, 0.15);
+      top: 8%; left: 4%;
+    }
+    .hero-trabajos .hero-geo-2 {
+      width: 90px; height: 90px;
+      border: 2px solid rgba(253, 194, 14, 0.2);
+      top: 15%; right: 6%;
+    }
+    .hero-trabajos .hero-geo-3 {
+      width: 50px; height: 50px;
+      background: rgba(11, 122, 0, 0.12);
+      bottom: 10%; left: 10%;
+    }
+    .hero-trabajos .hero-geo-4 {
+      width: 45px; height: 45px;
+      border: 2px solid rgba(253, 194, 14, 0.25);
+      bottom: 15%; right: 8%;
+    }
+
+    .hero-trabajos .hero-badge {
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-trabajos h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      animation: fadeDown 0.8s ease 0.1s both;
+    }
+
+    .hero-trabajos h1 .line-color {
+      /* Degradado FIE: Verde a Dorado */
+      background: linear-gradient(90deg, #16b300, #fdc20e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-trabajos p {
+      font-size: 1rem;
+      color: var(--texto-sub);
+      max-width: 500px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+      animation: fadeDown 0.8s ease 0.2s both;
+    }
+
+    /* Stats mini en el hero */
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      animation: fadeDown 0.8s ease 0.3s both;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--borde);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.5rem;
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #fdc20e, #16b300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.72rem;
+      color: var(--texto-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.25rem;
+    }
+
+    /* Reciclamos la estructura de la sección y grid */
+    .trabajos-section {
+      padding: 0 2.5rem 5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero-trabajos { padding: 3rem 1.2rem 2.5rem; }
+      .hero-stats { gap: 0.8rem; }
+      .hero-stat { padding: 0.6rem 1rem; }
+      .hero-stat-num { font-size: 1.4rem; }
+      .trabajos-section { padding: 0 1.2rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a class="navbar-brand" href="index.html">
+      <img class="navbar-logo" src="loguito.png" alt="Logo FIE" />
+      <span class="navbar-name">
+        TODOS JUNTOS<br><span>POR LA FIE</span>
+      </span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+
+    <div class="navbar-links" id="navbarLinks">
+      <a href="index.html" class="nav-item">Libros</a>
+      <a href="trabajos.html" class="nav-item">Trabajos</a>
+      <a href="practicas.html" class="nav-item activo">Prácticas</a>
+      <a href="examenes.html" class="nav-item">Exámenes</a>
+      <a href="cursos.html" class="nav-item">Cursos</a>
+    </div>
+  </nav>
+
+  <section class="hero-trabajos">
+    <div class="hero-geo hero-geo-1"></div>
+    <div class="hero-geo hero-geo-2"></div>
+    <div class="hero-geo hero-geo-3"></div>
+    <div class="hero-geo hero-geo-4"></div>
+
+    <div class="hero-badge">Centro de Entrenamiento</div>
+
+    <h1>
+      Repositorio de<br>
+      <span class="line-color">Prácticas FIE</span>
+    </h1>
+
+    <p>
+      Ejercicios resueltos, guías de laboratorio y prácticas dirigidas organizadas
+      por ciclo. Afianza tus conocimientos.
+    </p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statCiclos">10</span>
+        <span class="hero-stat-label">Ciclos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statCursos">—</span>
+        <span class="hero-stat-label">Cursos</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" id="statWorks">50+</span>
+        <span class="hero-stat-label">Prácticas</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="trabajos-section" id="trabajos">
+    <div class="section-header" style="margin-bottom: 30px;">
+      <div>
+        <h2 class="section-title" style="color: #fff;">Selecciona un <span>Ciclo</span></h2>
+        <p class="section-subtitle" style="font-size:0.85rem;color:var(--texto-sub);margin-top:0.25rem;">
+          Explora las prácticas por semestre
+        </p>
+      </div>
+    </div>
+
+    <div class="ciclos-grid" id="ciclosGrid">
+      </div>
+  </main>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modalContenido">
+      </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-logo-wrap">
+      <img class="footer-logo" src="loguito.png" alt="Logo" />
+      <span class="footer-name">TODOS JUNTOS <span>POR LA FIE</span></span>
+    </div>
+    <div class="footer-line"></div>
+    <p>Repositorio digital de acceso libre para estudiantes de la FIE</p>
+    <p class="footer-credits">Hecho con 💜 para toda la facultad</p>
+  </footer>
+
+  <script src="data/malla.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/trabajos.js"></script>
+
+</body>
+</html>

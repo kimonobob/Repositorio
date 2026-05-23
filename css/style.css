@@ -1068,3 +1068,43 @@ body {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================================
+       BOTÓN VOLVER (GLASSMORPHISM)
+    ========================================= */
+    .btn-back-glass {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 35px;
+      padding: 12px 26px;
+      background: rgba(255, 255, 255, 0.05); /* Fondo casi transparente */
+      color: #ffffff;
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.15); /* Borde sutil blanco */
+      border-radius: 50px; /* Forma de píldora */
+      cursor: pointer;
+      backdrop-filter: blur(10px); /* Efecto cristal desenfocado */
+      transition: all 0.3s ease;
+    }
+
+    .btn-back-glass:hover {
+      background: rgba(253, 194, 14, 0.1); /* Fondo doradito tenue */
+      border-color: #fdc20e; /* Borde dorado FIE */
+      color: #fdc20e; /* Texto dorado */
+      transform: translateX(-5px); /* Se mueve hacia la izquierda */
+      box-shadow: 0 4px 20px rgba(253, 194, 14, 0.15); /* Resplandor dorado */
+    }
+
+    .btn-back-glass svg {
+      transition: transform 0.3s ease;
+    }
+
+    /* Animación extra para la flechita */
+    .btn-back-glass:hover svg {
+      transform: translateX(-4px); 
+    }
+
+    

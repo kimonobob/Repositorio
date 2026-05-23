@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Documentos de Asignatura | Todos Juntos por la FIE</title>
-  
   <link rel="icon" type="image/png" href="loguito.png" />
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -13,9 +12,7 @@
   <nav class="navbar">
     <a class="navbar-brand" href="index.html">
       <img class="navbar-logo" src="loguito.png" alt="Logo FIE" />
-      <span class="navbar-name">
-        TODOS JUNTOS<br><span>POR LA FIE</span>
-      </span>
+      <span class="navbar-name">TODOS JUNTOS<br><span>POR LA FIE</span></span>
     </a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
     <div class="navbar-links" id="navbarLinks">
@@ -42,24 +39,31 @@
     <div class="hero-group" id="cursoCodigo" style="margin-top: 15px; display: inline-block;">CODIGO</div>
 
     <p style="margin-top: 25px; max-width: 600px; margin-left: auto; margin-right: auto;">
-      Explora todos los trabajos, prácticas, exámenes y textos base correspondientes a esta asignatura.
+      Repositorio centralizado: explora los trabajos, prácticas, exámenes y textos base de esta asignatura.
     </p>
 
-    <a href="trabajos.html" class="hero-btn" style="margin-top: 30px;">
-      ← Volver a los Ciclos
-    </a>
+<button onclick="window.history.back()" class="btn-back-glass">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Volver al panel
+    </button>
   </section>
 
   <main class="contenido">
     
-    <h2 class="titulo" id="tituloContenido">Trabajos y Evaluaciones</h2>
-    
-    <div class="libros-grid" id="gridTrabajos" style="margin-top: 50px;">
-      </div>
+    <h2 class="titulo" id="tituloContenido">Trabajos y Proyectos</h2>
+    <div class="libros-grid" id="gridTrabajos" style="margin-top: 50px;"></div>
+
+    <h2 class="titulo" id="tituloContenido" style="margin-top: 100px;">Prácticas Dirigidas</h2>
+    <div class="libros-grid" id="gridPracticas" style="margin-top: 50px;"></div>
+
+    <h2 class="titulo" id="tituloContenido" style="margin-top: 100px;">Exámenes Resueltos</h2>
+    <div class="libros-grid" id="gridExamenes" style="margin-top: 50px;"></div>
 
     <h2 class="titulo" id="tituloContenido" style="margin-top: 100px;">Libros Recomendados</h2>
-    <div class="libros-grid" id="gridLibros" style="margin-top: 50px;">
-      </div>
+    <div class="libros-grid" id="gridLibros" style="margin-top: 50px;"></div>
 
   </main>
 
@@ -79,7 +83,6 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Extraer el parámetro de la URL
       const params = new URLSearchParams(window.location.search);
       const codigoCurso = params.get("curso");
 
@@ -88,7 +91,6 @@
         return;
       }
 
-      // 2. Buscar datos en malla.js
       let cursoEncontrado = null;
       let cicloRomano = "";
 
@@ -101,19 +103,17 @@
         }
       }
 
-      // 3. Imprimir datos en el Hero
       if (cursoEncontrado) {
         document.getElementById("cursoCodigo").textContent = cursoEncontrado.codigo;
         document.getElementById("cursoNombre").textContent = cursoEncontrado.nombre;
         document.getElementById("cursoDetalles").textContent = `Ciclo ${cicloRomano} — Ingeniería Económica`;
         
-        cargarTrabajos(codigoCurso);
+        cargarDocumentos(codigoCurso);
         cargarLibrosAsociados(cursoEncontrado.nombre);
       } else {
         document.getElementById("cursoNombre").textContent = "Asignatura no encontrada";
       }
 
-      // 4. Activar Menú Móvil
       const menuToggle = document.getElementById('menuToggle');
       const navbarLinks = document.getElementById('navbarLinks');
       if (menuToggle && navbarLinks) {
@@ -121,25 +121,40 @@
       }
     });
 
-    /* --- Renderizar Trabajos usando tu clase .recurso --- */
-    /* --- Renderizar Trabajos con Portada (Estilo Libros) --- */
-    function cargarTrabajos(codigo) {
-      const grid = document.getElementById("gridTrabajos");
-      const filtrados = baseTrabajos.filter(t => t.curso === codigo);
+    /* --- LÓGICA MAESTRA: Separa un solo archivo .js en 3 secciones --- */
+    function cargarDocumentos(codigo) {
+      if (typeof baseTrabajos === 'undefined') return;
 
-      if (filtrados.length === 0) {
+      // Filtramos TODOS los documentos que pertenecen a este curso
+      const docsCurso = baseTrabajos.filter(t => t.curso === codigo);
+
+      // Los separamos por su "tipo"
+      const trabajos = docsCurso.filter(t => t.tipo.toLowerCase() === 'trabajo');
+      const practicas = docsCurso.filter(t => t.tipo.toLowerCase() === 'practica' || t.tipo.toLowerCase() === 'práctica');
+      const examenes = docsCurso.filter(t => t.tipo.toLowerCase() === 'examen');
+
+      // Pintamos cada sección con nuestra función genérica
+      renderizarSeccion("gridTrabajos", trabajos, "📂", "No hay trabajos subidos", "Sé el primero en aportar un trabajo o monografía.");
+      renderizarSeccion("gridPracticas", practicas, "📝", "No hay prácticas subidas", "Aún no tenemos ejercicios o guías de laboratorio aquí.");
+      renderizarSeccion("gridExamenes", examenes, "✏️", "No hay exámenes subidos", "Aporta solucionarios de parciales o finales para ayudar a los demás.");
+    }
+
+    /* --- Función genérica para dibujar las tarjetas --- */
+    function renderizarSeccion(idContenedor, arrayDatos, iconoVacio, tituloVacio, textoVacio) {
+      const grid = document.getElementById(idContenedor);
+      
+      if (arrayDatos.length === 0) {
         grid.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 50px; background: rgba(0,0,0,0.02); border-radius: 20px; border: 2px dashed #ccc;">
-            <span style="font-size: 3rem;">📂</span>
-            <h3 style="color: #0b7a00; margin-top: 15px;">No hay documentos subidos</h3>
-            <p style="color: #666; margin-top: 10px;">Sé el primero en aportar material de estudio para este curso.</p>
+            <span style="font-size: 3rem;">${iconoVacio}</span>
+            <h3 style="color: #0b7a00; margin-top: 15px;">${tituloVacio}</h3>
+            <p style="color: #666; margin-top: 10px;">${textoVacio}</p>
           </div>
         `;
         return;
       }
 
-      // Reutilizamos tu clase .libro-card para que se vea idéntico al Index
-      grid.innerHTML = filtrados.map((t, i) => `
+      grid.innerHTML = arrayDatos.map((t, i) => `
         <div class="libro-card" style="animation-delay: ${i * 0.05}s">
           <div class="libro-portada">
             ${t.portada
@@ -147,7 +162,7 @@
                    onerror="this.parentElement.innerHTML='<div class=\\'libro-portada-placeholder\\'><span>📄</span><p>Sin portada</p></div>'">`
               : `<div class="libro-portada-placeholder"><span>📄</span><p>Sin portada</p></div>`
             }
-            <span class="libro-categoria-tag" style="background: #0b7a00; color: #fff;">${t.tipo}</span>
+            <span class="libro-categoria-tag" style="background: #0b7a00; color: #fff; text-transform: capitalize;">${t.tipo}</span>
             <div class="libro-overlay">
               <a href="${t.archivo}" target="_blank" style="text-decoration:none;">
                 <span class="btn-ver">Abrir Documento →</span>
@@ -165,14 +180,10 @@
       `).join("");
     }
 
-    /* --- Renderizar Libros usando exactamente tu diseño del index --- */
+    /* --- Renderizar Libros --- */
     function cargarLibrosAsociados(nombreCurso) {
       const grid = document.getElementById("gridLibros");
-      
-      if (typeof libros === 'undefined') {
-        grid.innerHTML = '<p style="text-align:center; width:100%;">Biblioteca no disponible.</p>';
-        return;
-      }
+      if (typeof libros === 'undefined') return;
 
       const filtrados = libros.filter(l => {
         return nombreCurso.toLowerCase().includes(l.categoria.toLowerCase()) || l.categoria === "Todos";
@@ -189,7 +200,6 @@
         return;
       }
 
-      // Este HTML es exactamente igual al que usas en main.js para generar los libros
       grid.innerHTML = filtrados.map((libro, i) => `
         <div class="libro-card" style="animation-delay: ${i * 0.05}s">
           <div class="libro-portada">
