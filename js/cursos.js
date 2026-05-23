@@ -319,3 +319,4 @@ function formatearFecha(fecha) {
   if (diff < 365) return `Hace ${Math.floor(diff / 30)} meses`;
   return `Hace ${Math.floor(diff / 365)} años`;
 }
+
