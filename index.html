@@ -11,8 +11,36 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/popup.css" /> <!-- ← NUEVO -->
 </head>
 <body>
+
+<!-- ════════════════════ POPUP PUBLICIDAD ════════════════════ -->
+  <div class="popup-overlay" id="popupPublicidad">
+    <div class="popup-container">
+      <button class="popup-close" id="btnCerrarPopup" aria-label="Cerrar publicidad">
+        ×
+      </button>
+      
+      <div class="popup-content">
+         <a href="https://www.facebook.com/profile.php?id=61590264844308" target="_blank">
+        <img 
+          src="imagenes/publicidad.jpg" 
+          alt="Publicidad FIE" 
+          class="popup-imagen"
+        />
+        </a>
+      </div>
+      
+      <!-- Opcional: Botón de acción -->
+      <div class="popup-footer">
+        <button class="popup-btn-action" id="btnNoMostrar">
+          No volver a mostrar hoy
+        </button>
+      </div>
+    </div>
+  </div>
+
 
   <!-- ════════════════════ NAVBAR ════════════════════ -->
   <nav class="navbar">
@@ -120,6 +148,7 @@
 
   <!-- Scripts: primero los datos, luego la lógica -->
   <script src="data/libros.js"></script>
+   <script src="js/popup.js"></script>
   <script src="js/main.js"></script>
 
 </body>

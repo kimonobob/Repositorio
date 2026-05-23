@@ -7,7 +7,7 @@ const CURSOS_DATA = [
   // ──────── ÁREA: MATEMÁTICAS ────────
 {
     id: 7,
-    titulo: "Ecuación diferencial lineal",
+    titulo: "Ecuación diferencial lineal de primer orden - clase 1",
     area: "matematicas",
     profesor: "Jorge Chavez Fuentes",
     duracion: "01:43:53",
@@ -18,8 +18,124 @@ const CURSOS_DATA = [
     descripcion: "la clase comienza en el minuto 30:40 del video",
     materialesUrl: "#"
   },
+
+  {
+    id: 8,
+    titulo: "Ecuación diferencial lineal de primer orden  - clase 2",
+    area: "matematicas",
+    profesor: "Jorge Chavez Fuentes",
+    duracion: "55:27",
+    vistas: 2691,
+    fecha: "2022-11-28",
+    thumbnail: "https://img.youtube.com/vi/btjyR1eM8Yg/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/btjyR1eM8Yg",
+    descripcion: "continúa hablando sobre las ecuaciones diferenciales lineales de primer orden",
+    materialesUrl: "#"
+  },
+
+  {
+    id: 9,
+    titulo: "Ecuación diferencial lineal de primer orden - clase 3",
+    area: "matematicas",
+    profesor: "Jorge Chavez Fuentes",
+    duracion: "01:00:40",
+    vistas: 2691,
+    fecha: "2022-11-28",
+    thumbnail: "https://img.youtube.com/vi/8SEtZhzrtns/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/8SEtZhzrtns",
+    descripcion: "continuación sobre el tema de ecuaciones diferenciales lineales de primer orden",
+    materialesUrl: "#"
+  },
   // ──────── ÁREA: ECONOMÍA ────────
   
+  // ──────── ÁREA: Microeconomía ────────
+
+  {
+    id: 10,
+    titulo: "Introducción a la Microeconomía - clase 1",
+    area: "micro",
+    profesor: "Yadira Mori",
+    duracion: "01:54:19",
+    vistas: 26040,
+    fecha: "2022-02-01",
+    thumbnail: "https://img.youtube.com/vi/sc9dn9dCkzA/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/sc9dn9dCkzA",
+    descripcion: "continuación sobre el tema de ecuaciones diferenciales lineales de primer orden",
+    materialesUrl: "#"
+  },
+
+  {
+    id: 11,
+    titulo: "Introducción a la Microeconomía Teoría del consumidor - clase 2",
+    area: "micro",
+    profesor: "Yadira Mori",
+    duracion: "01:47:35",
+    vistas: 26040,
+    fecha: "2022-02-01",
+    thumbnail: "https://img.youtube.com/vi/4ouMZ03QCyw/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/4ouMZ03QCyw",
+    descripcion: "continuación sobre el tema de ecuaciones diferenciales lineales de primer orden",
+    materialesUrl: "#"
+  },
+
+  {
+    id: 12,
+    titulo: "Introducción a la Microeconomía Elección del consumidor - clase 3",
+    area: "micro",
+    profesor: "Yadira Mori",
+    duracion: "01:47:35",
+    vistas: 3708,
+    fecha: "2022-02-01",
+    thumbnail: "https://img.youtube.com/vi/l3Cu32weVKg/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/l3Cu32weVKg",
+    descripcion: "Elección del consumidor",
+    materialesUrl: "#"
+  },
+
+  // ──────── ÁREA: Microeconomía ────────
+
+{
+    id: 13,
+    titulo: "Introducción a la Macroeconomía - clase 1",
+    area: "macro",
+    profesor: "Alejandro olivares",
+    duracion: "01:56:09",
+    vistas: 8011,
+    fecha: "2022-03-08",
+    thumbnail: "https://img.youtube.com/vi/xxs0Bs9LERw/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/xxs0Bs9LERw",
+    descripcion: "conceptos preliminares",
+    materialesUrl: "#"
+  },
+
+  {
+    id: 14,
+    titulo: "Introducción a la Macroeconomía - clase 2",
+    area: "macro",
+    profesor: "Alejandro olivares",
+    duracion: "01:56:09",
+    vistas: 8011,
+    fecha: "2022-03-08",
+    thumbnail: "https://img.youtube.com/vi/SJVIo9TQmug/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/SJVIo9TQmug",
+    descripcion: "PBI y economía peruana",
+    materialesUrl: "#"
+  },
+
+  {
+    id: 15,
+    titulo: "Introducción a la Macroeconomía - clase 3",
+    area: "macro",
+    profesor: "Alejandro olivares",
+    duracion: "02:01:19",
+    vistas: 1877,
+    fecha: "2022-03-08",
+    thumbnail: "https://img.youtube.com/vi/qcr8gmPuO6o/hqdefault.jpg",
+    videoUrl: "https://www.youtube.com/embed/qcr8gmPuO6o",
+    descripcion: "PBI y economía peruana",
+    materialesUrl: "#"
+  },
+
    // ──────── ÁREA: ECONOMETRÍA ────────
   {
     id: 1,
@@ -118,6 +234,8 @@ const AREAS = {
   'todas': { nombre: 'Todos los cursos', icono: '📚' },
   'matematicas': { nombre: 'Matemáticas', icono: '📐' },
   'economia': { nombre: 'Economía', icono: '📊' },
+  'micro': { nombre: 'Microeconomía', icono: '🏢' },
+  'macro': { nombre: 'Macroeconomía', icono: '🌎' },
   'econometría': { nombre: 'Econometría', icono: '📈' },
   'finanzas': { nombre: 'Finanzas', icono: '💰' },
   'estadistica': { nombre: 'Estadística', icono: '📈' },
